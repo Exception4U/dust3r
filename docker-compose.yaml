@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  app:
+    image: dust3r:latest 
+    build: .
+    ports:
+      - "8000:8000"  # If you want to expose a port for a web service, for example
+    volumes:
+      - .:/app  # Mount the current directory to /app in the container
+      - /data3/tushar:/data
+    environment: 
+        COMPOSE_DOCKER_CLI_BUILD: 1 #enable debug mode
+    command: tail -f /dev/null  # Keep the container running in the background
+    runtime: nvidia  # Use the NVIDIA runtime for GPU support
